@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   Future signin() async {
    
     final response = await http.post(
-        Uri.parse("http://192.168.1.3/flutter/login.php"),
+        Uri.parse("http://192.168.1.4/flutter/login.php"),
         body: {
           
           "password": _passController.text,
@@ -130,7 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: (){
                       if (_loginKey.currentState!.validate()) {
-                         signin().then((value) =>Get.to(()=>HomePage()) ).then((value) => Get.showSnackbar(const GetSnackBar(message: 'Login Successfully',backgroundColor: Colors.green,)));
+                         signin().then((value) => Get.showSnackbar(const GetSnackBar(
+                          duration: Duration(seconds: 2),
+                          message: 'Login Successfully',backgroundColor: Colors.green,))).then((value) =>Get.to(()=>HomePage()) );
                       }
                        else
                        {

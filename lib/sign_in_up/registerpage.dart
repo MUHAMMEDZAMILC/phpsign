@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:phpsign/common/sizedbox.dart';
-import 'package:phpsign/home/homepage.dart';
 import 'package:phpsign/sign_in_up/loginpage.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -26,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Future signup() async {
    
     final response = await http.post(
-        Uri.parse("http://192.168.1.3/flutter/register.php"),
+        Uri.parse("http://192.168.1.4/flutter/register.php"),
         body: {
           "username": _nameController.text,
           "password": _passController.text,
@@ -195,6 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       if(_fornKey.currentState!.validate())
                       {
                         signup().then((value) => Get.showSnackbar(const GetSnackBar(
+                         
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 2),
                           message: 'Successfully registred',))).then((value) => Get.to(()=>LoginPage()));
